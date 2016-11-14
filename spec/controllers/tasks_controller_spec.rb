@@ -7,7 +7,7 @@ RSpec.describe TasksController, type: :controller do
       task2 = FactoryGirl.create(:task)
       task1.update_attributes(title: "something else")
       get :index
-      expect(response).to have_http_status :success
+      expect(response).to have_http_status(:success)
       response_value = ActiveSupport::JSON.decode(@response.body)
       expect(response_value.count).to eq(2)
       response_ids = response_value.collect do |task|
@@ -21,9 +21,20 @@ RSpec.describe TasksController, type: :controller do
     it "should allow tasks to be marked done" do
       task = FactoryGirl.create(:task, done: false)
       put :update, id: task.id, task: { done: true }
-      expect(response).to have_http_status :success
+      expect(response).to have_http_status(:success)
       task.reload
       expect(task.done).to eq(true)
     end
   end
+
+  describe "tasks#create" do
+    it "should allow new tasks to be created" do
+      post :create, task: {title: "Fix things"}
+      expect(response).to have_http_status(:success)
+      response_value = ActiveSupport::JSON.decode(@response.body)
+      expect(response_value['title']).to eq("Fix things")
+      expect(Task.last.title).to eq("Fix things")
+    end
+  end
+
 end
