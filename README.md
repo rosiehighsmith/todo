@@ -1,24 +1,27 @@
-# README
+# ToDo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Synopsis
 
-Things you may want to cover:
+ToDo is a Rails application with a fluid user interface through JavaScript and jQuery. It allows users to rapidly add dynamic content. Check it out [here](http://todo-rosie-highsmith.herokuapp.com/)!
 
-* Ruby version
+## Current Features
 
-* System dependencies
+- Add ToDo list tasks without full page refresh using AJAX 
 
-* Configuration
+- Strikethrough completed items after the user checks as done
 
-* Database creation
+- Automated software tests for each key feature of the application using TDD
 
-* Database initialization
+## Future Features
 
-* How to run the test suite
+- Sign up & Log in features to allow personalized ToDo lists
 
-* Services (job queues, cache servers, search engines, etc.)
+- Let users delete tasks from the ToDo list
 
-* Deployment instructions
+- Allow multiple ToDo lists to be created
 
-* ...
+## App Snapshot
+
+A glimpse of the ToDo list with some items completed:
+
+![alt tag](http://i.imgur.com/aBXAFLI.png)
