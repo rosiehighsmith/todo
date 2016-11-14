@@ -1,9 +1,26 @@
 <section class = "todoapp">
     <header class = "header">
         <h1>todos</h1>
+        <input class = "new-todo" placeholder="what needs to be done?" autofocus = "">
     </header>
-
+<!-- Build structure for todo-list -->
     <section class = "main">
-
+    <ul class = "todo-list">
+    </ul>
     </section>
+<!-- Allow JS to be executed after page fully loads -->
+    <script>
+      $(function() {
+        $.get("/tasks").success( function ( data ) {
+          var htmlString = "";
+          $.each(data, function(index, task) {
+            var liElement = '<li><div class = "view"><input class = "toggle" type = "checkbox"><label>' + task.title +
+              '</label></div></li>';
+            htmlString += liElement;
+          });
+          var ulTodos = $('.todo-list');
+          ulTodos.html(htmlString);
+        });
+      });
+    </script>
 </section>
