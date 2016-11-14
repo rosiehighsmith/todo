@@ -20,6 +20,8 @@ ToDo is a Rails application with a fluid user interface through JavaScript and j
 
 - Allow multiple ToDo lists to be created
 
+- Change font colors for improved readability
+
 ## App Snapshot
 
 A glimpse of the ToDo list with some items completed:
