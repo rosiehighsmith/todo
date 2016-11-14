@@ -1,7 +1,9 @@
 <section class = "todoapp">
     <header class = "header">
-        <h1>todos</h1>
-        <input class = "new-todo" placeholder="what needs to be done?" autofocus = "">
+        <h1>Todos</h1>
+        <form id = "new-form">
+          <input type = "text" class = "new-todo"/>
+        </form>
     </header>
 <!-- Build structure for todo-list -->
     <section class = "main">
@@ -11,6 +13,12 @@
 <!-- Allow JS to be executed after page fully loads -->
     <script>
       $(function() {
+        $('#new-form').submit(function(event) {
+          event.preventDefault();
+          var textbox = $('.new-todo');
+          console.log("Task: ", textbox.val());
+        });
+
         // taskHtml method taks JS representation of the task
         // and produces an HTML representation using <li> tags
         function taskHtml(task) {
@@ -40,21 +48,18 @@
             }
           });
         }
-
+        // after successful page load, allow functions above
+        // taskHtml and toggleTask to work
         $.get("/tasks").success( function( data ) {
           var htmlString = "";
 
           $.each(data, function(index,  task) {
-            
-
-
             htmlString += taskHtml(task);
           });
           var ulTodos = $('.todo-list');
           ulTodos.html(htmlString);
 
           $('.toggle').change(toggleTask);
-
         });
       });
     </script>
